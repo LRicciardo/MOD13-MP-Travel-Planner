@@ -1,0 +1,26 @@
+[
+  {
+    "trip_budget": 5000,
+    "traveller_count": 4,
+    "traveller_id": 4,
+    "location_id": 1
+  },
+  {
+    "trip_budget": 5000,
+    "traveller_count": 4,
+    "traveller_id": 4,
+    "location_id": 1
+  },
+  {
+    "trip_budget": 5000,
+    "traveller_count": 4,
+    "traveller_id": 4,
+    "location_id": 1
+  },
+  {
+    "trip_budget": 5000,
+    "traveller_count": 4,
+    "traveller_id": 4,
+    "location_id": 1
+  }
+]
