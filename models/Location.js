@@ -1,4 +1,4 @@
-const { UUIDV4, Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Location extends Model {}
@@ -11,12 +11,9 @@ Location.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    card_number: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-    },
-    location: {
+    location_name: {
       type: DataTypes.STRING,
+      allowNull: false
     },
   },
   {
