@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { LibraryCard, Reader } = require('../../models');
+const { Location, Traveller, Trip } = require('../../models');
 
 // GET all cards
 router.get('/', async (req, res) => {
   try {
-    const libraryCardData = await LibraryCard.findAll({
-      include: [{ model: Reader }],
+    const travellerData = await Traveller.findAll({
+      include: [{ model: Trip }],
     });
     res.status(200).json(libraryCardData);
   } catch (err) {
