@@ -3,20 +3,24 @@ const Trip = require('./Trip');
 const Location = require('./Location');
 
 Traveller.belongsToMany(Location, {
-  foreignKey: 'traveller_id',
-  onDelete: 'CASCADE',
+// the third table is known as the through table
+// use this table to link the two tables
+  through: {
+    model: Trip,
+    unique: false
+  },
+  as: "planned_trips"
 });
 
-Traveller.hasMany(Trip, {
-  foreignKey: 'traveller_id',
-  onDelete: 'CASCADE',
+Location.belongsToMany(Traveller, {
+  through: {
+    model: Trip,
+    unique: false
+  },
+  as: "location_travellers"
 });
 
-Trip.belongsTo(Traveller, {
-  foreignKey: 'traveller_id',
-});
-
-Location.belongsTo(Traveller, {
+Location.belongsTo(Trip, {
   foreignKey: 'traveller_id',
 });
 
