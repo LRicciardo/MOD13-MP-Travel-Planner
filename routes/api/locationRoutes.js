@@ -15,7 +15,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const locationData = await Location.findByPk(req.params.id, {
-      include: [{ model: Trip }, {model: Traveller}],
+      //  this is the JOIN though Trip
+      include: [{model: Traveller, through: Trip, as: "location_travellers" }],
     });
 
     if (!locationData) {
@@ -32,9 +33,7 @@ router.get('/:id', async (req, res) => {
 // CREATE a location
 router.post('/', async (req, res) => {
   try {
-    const locationData = await Location.create({
-      traveller_id: req.body.traveller_id,
-    });
+    const locationData = await Location.create(req.body);
     res.status(200).json(locationData);
   } catch (err) {
     res.status(400).json(err);

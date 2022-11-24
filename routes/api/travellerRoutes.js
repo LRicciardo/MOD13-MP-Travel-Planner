@@ -1,14 +1,10 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
 const { Traveller, Trip, Location } = require('../../models');
 
 // GET all readers
 router.get('/', async (req, res) => {
   try {
-    const travellerData = await Traveller.findAll({
-      include: [{ model: Location }, { model: Trip }],
-      where: { id: {[Op.notin]: Trip.id}}
-    });
+    const travellerData = await Traveller.findAll();
     res.status(200).json(travellerData);
   } catch (err) {
     res.status(500).json(err);
@@ -19,7 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const travellerData = await Traveller.findByPk(req.params.id, {
-      include: [{ model: Location }, { model: Trip }],
+      include: [{model: Location, through: Trip, as: "planned_trips" }],
       // TODO: Add a sequelize literal to get a count of short books
     });
 
